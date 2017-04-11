@@ -21,10 +21,8 @@ int		get_ants(char *line)
 	i = 0;
 	while (line[i] != '\0')
 	{
-		if ((ft_isdigit(line[i])) == 0)
-		{
-			return(ft_error(3));
-		}
+		if ((ft_isdigit(line[i])) == 0 || i >= 10)
+			exit(-1);
 		i++;
 	}
 	nb = ft_atoi(line);
@@ -72,8 +70,6 @@ void	check_links(char *line, t_lst *lst)
 
 int		check_line(char *line)
 {
-	if (line[0] == '\0')
-		return (0);
 	if ((line[0]) && line[0] == '#' && line[1] != '#') 
 		return (1);
 	else if ((line[0] && line[1]) && line[0] == '#' && line[1] == '#')
