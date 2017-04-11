@@ -15,12 +15,17 @@
 
 # include "../libft/includes/libft.h"
 
+# define CHECK_BIT(var, pos)	(var & pos)
+# define ANTS	1
+# define ROOMS	2
+# define LINKS	3
+
 typedef struct	s_rooms
 {
 	int		i;
 	int		y;
 	int		x;
-	int 	index;
+	int 	status;
 	char	*room;
 	char	*start;
 	char	*end;
@@ -44,20 +49,22 @@ int		ft_splitnb(char *s, t_rooms *r);
 ** checking.c
  */
 int		check_line(char *line);
+void	check_startend(char *line, t_rooms *r);
+void	check_links(char *line, t_lst *lst);
+int		get_ants(char *line);
+int		check_exist(char *s, t_lst *lst);
+
 void	init_all(char **line, t_rooms *r, t_lst *lst);
 
-int		get_ants(char *line);
-
-
+int		get_links(char *line, t_lst *lst);
+int		next_step(char *line, t_lst *lst, t_rooms r);
 int		check_hash(char *line, t_rooms *r, t_lst *lst);
 int		check_room(char *s);
-size_t	len_str(char *s);
+int		len_str(char *s);
 int		count_space(char *s);
 int		check_nb(char *s);
-
+int		count_char(char *s, char c);
 int	ft_error(int i);
-int		check_exist(char *s, t_lst *lst);
-void	check_startend(char **line, t_rooms *r);
-int		get_rooms(char **line, t_rooms *r, t_lst **lst);
+int		get_rooms(char *line, t_rooms *r, t_lst **lst);
 void	print_lst(t_lst *lst);
 #endif

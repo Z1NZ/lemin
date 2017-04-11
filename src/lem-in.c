@@ -24,9 +24,9 @@ void	print_lst(t_lst *lst)
 	}
 }
 
-int		get_rooms(char **line, t_rooms *r, t_lst **lst)
+int		get_rooms(char *line, t_rooms *r, t_lst **lst)
 {
-	ft_splitnb(*line, r);
+	ft_splitnb(line, r);
 	if (check_exist(r->room, *lst) == 1)
 		*lst = add_rooms(*lst, r->room,r->y,r->x);
 	if (*lst)
@@ -65,25 +65,26 @@ int		main()
 	t_rooms	r;
 	t_lst	*lst;
 	char	*line;
-
-	init_all(&line, &r, &lst);
+	lst = NULL;
+//	init_all(&line, &r, &lst);
 	while (get_next_line(0, &line) > 0)
 	{
 		if (check_line(line) == 1)
 			ft_printf("[COMMENTAIRES]\n");
-		else if (r.index == 0 && (r.i = (get_ants(line)) > 0))
-			r.index++;
-		else if (r.index == 1 && check_line(line) != 1)
+		else if (!CHECK_BIT(r.status, ANTS) && ((r.i = get_ants(line)) > 0))
+			r.status |= ANTS;
+		else if (!CHECK_BIT(r.status, ROOMS) && (!CHECK_BIT(r.status, ROOMS))
+		&& check_line(line) != 1)
 		{
-			check_startend(&line, &r);
+			check_startend(line, &r);
 			if (check_room(line) == 1)
-				get_rooms(&line, &r, &lst);
+				get_rooms(line, &r, &lst);
 			if (next_step(line, lst, r) == 1)
-				r.index++;
+				r.status |= ROOMS;
 		}
-		else if (r.index == 2 && check_line(line) != 1)
+		else if (CHECK_BIT(r.status, ROOMS) && check_line(line) != 1)
 			get_links(line, lst);
 
-		ft_printf("\n[%d]\n", r.index);
+		ft_printf("\n[%d]\n", r.status);
 	}
 }

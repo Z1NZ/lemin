@@ -1,12 +1,12 @@
 #include "lemin.h"
 
-size_t		len_str(char *s)
+int		len_str(char *s)
 {
-	size_t i;
+	int i;
 
 	i = 0;
 	if (s[0] == '#' || s[0] == 'L')
-		return(ft_error(5));
+		return(0);
 	while(s[i] != ' ' && s[i] != '\0')
 		i++;
 	return(i);
@@ -56,3 +56,4 @@ void	init_all(char **line, t_rooms *r, t_lst *lst)
 	r->end = NULL;
 	r->index = 0;
 }
+

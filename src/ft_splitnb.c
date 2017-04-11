@@ -32,7 +32,7 @@ t_lst	*add_rooms(t_lst *lst, char *str, int y, int x)
 
 int		check_room(char *s)
 {
-	size_t i;
+	int i;
 	i = 0;
 	if (!s)
 		return (0);
@@ -40,9 +40,9 @@ int		check_room(char *s)
 	if (i == 0)
 		return (0);
 	if ((count_char(s, ' ')) != 2)
-		return(ft_error(1));
+		return(0);
 	if ((check_nb(s + i)) == 0)
-		return(ft_error(2));
+		return(0);
 	return (1);
 }
 
@@ -52,7 +52,7 @@ int		ft_splitnb(char *s, t_rooms *r)
 
 	i = len_str(s);
 
-	r->room = ft_strsub(s, 0, i);
+	r->room = ft_strsub(s, 0, (size_t)i);
 	r->y = ft_atoi(s+i);
 	r->x = ft_atoi(s+(i + ft_len_int(r->y) + 1));
 	return (1);

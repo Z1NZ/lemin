@@ -29,24 +29,24 @@ int		get_ants(char *line)
 	free(line);
 	ft_putnbr(nb);
 	if (nb < 1 || nb > INT_MAX)
-		return(ft_error(4));
+		return(0);
 	else
 		return(nb);
 }
 
-void	check_startend(char **line, t_rooms *r)
+void	check_startend(char *line, t_rooms *r)
 {
-	if (check_line(*line) == 2)
+	if (check_line(line) == 2)
 	{
-		get_next_line(0, line);
+		get_next_line(0, &line);
 		if (check_room(*line) == 1)
-			r->start = ft_strdup(*line);
+			r->start = ft_strdup(line);
 	}
-	else if (check_line(*line) == 3)
+	else if (check_line(line) == 3)
 	{
 		get_next_line(0, line);
-		if (check_room(*line) == 1)
-			r->end = ft_strdup(*line);
+		if (check_room(line) == 1)
+			r->end = ft_strdup(line);
 	}
 }
 
