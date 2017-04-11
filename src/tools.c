@@ -1,6 +1,6 @@
 #include "lemin.h"
 
-int		len_str(char *s)
+char	*get_name(char *s)
 {
 	int i;
 
@@ -9,7 +9,9 @@ int		len_str(char *s)
 		return(0);
 	while(s[i] != ' ' && s[i] != '\0')
 		i++;
-	return(i);
+	if (i == 0)
+		return(NULL);
+	return(s + i);
 }
 
 int		count_char(char *s, char c)
@@ -54,6 +56,5 @@ void	init_all(char **line, t_rooms *r, t_lst *lst)
 	r->room = NULL;
 	r->start = NULL;
 	r->end = NULL;
-	r->index = 0;
 }
 

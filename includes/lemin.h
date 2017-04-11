@@ -60,7 +60,7 @@ int		get_links(char *line, t_lst *lst);
 int		next_step(char *line, t_lst *lst, t_rooms r);
 int		check_hash(char *line, t_rooms *r, t_lst *lst);
 int		check_room(char *s);
-int		len_str(char *s);
+char	*get_name(char *s);
 int		count_space(char *s);
 int		check_nb(char *s);
 int		count_char(char *s, char c);

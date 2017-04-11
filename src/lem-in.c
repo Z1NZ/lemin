@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   lem-in.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aboudjem <aboudjem@student.42.fr>          +#+  +:+       +#+        */
+/*   By: srabah <srabah@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/03 23:13:43 by aboudjem          #+#    #+#             */
-/*   Updated: 2017/04/04 07:55:24 by aboudjem         ###   ########.fr       */
+/*   Updated: 2017/04/11 22:35:44 by srabah           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,7 +84,7 @@ int		main()
 		}
 		else if (CHECK_BIT(r.status, ROOMS) && check_line(line) != 1)
 			get_links(line, lst);
-
+		free(line);
 		ft_printf("\n[%d]\n", r.status);
 	}
 }

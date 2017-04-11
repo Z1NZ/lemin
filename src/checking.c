@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   lem-in.c                                           :+:      :+:    :+:   */
+/*   checking.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aboudjem <aboudjem@student.42.fr>          +#+  +:+       +#+        */
+/*   By: srabah <srabah@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/03 23:13:43 by aboudjem          #+#    #+#             */
-/*   Updated: 2017/04/04 07:55:24 by aboudjem         ###   ########.fr       */
+/*   Updated: 2017/04/11 22:43:34 by srabah           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,14 +22,13 @@ int		get_ants(char *line)
 	while (line[i] != '\0')
 	{
 		if ((ft_isdigit(line[i])) == 0 || i >= 10)
-			exit(-1);
+			exit(-1);///// free les structures
 		i++;
 	}
 	nb = ft_atoi(line);
-	free(line);
 	ft_putnbr(nb);
-	if (nb < 1 || nb > INT_MAX)
-		return(0);
+	if (nb < 1 || nb > INT_MAX)// verifier les int max 
+		exit(-1);////// free les structures
 	else
 		return(nb);
 }
@@ -39,12 +38,12 @@ void	check_startend(char *line, t_rooms *r)
 	if (check_line(line) == 2)
 	{
 		get_next_line(0, &line);
-		if (check_room(*line) == 1)
+		if (check_room(line) == 1)
 			r->start = ft_strdup(line);
 	}
 	else if (check_line(line) == 3)
 	{
-		get_next_line(0, line);
+		get_next_line(0, &line);
 		if (check_room(line) == 1)
 			r->end = ft_strdup(line);
 	}
