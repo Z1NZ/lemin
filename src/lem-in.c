@@ -1,38 +1,5 @@
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   lem-in.c                                           :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: srabah <srabah@student.42.fr>              +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/04/03 23:13:43 by aboudjem          #+#    #+#             */
-/*   Updated: 2017/04/11 22:35:44 by srabah           ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
 
 # include "lemin.h"
-
-void	print_lst(t_lst *lst)
-{
-	t_lst *tmp;
-	tmp = NULL;
-	tmp = lst;
-	while(tmp)
-	{
-		ft_printf("--[%s]--[%d]--[%d]--\n", tmp->rooms, tmp->y, tmp->x);
-		tmp = tmp->next;
-	}
-}
-
-int		get_rooms(char *line, t_rooms *r, t_lst *lst)
-{
-	ft_splitnb(line, r);
-	if (check_exist(r->room, lst) == 1)
-		lst = add_rooms(lst, r->room,r->y,r->x);
-	if (lst)
-		print_lst(lst);
-	return(1);
-}
 
 int		next_step(char *line, t_lst *lst, t_rooms r)
 {
@@ -59,21 +26,30 @@ int 	get_links(char *line, t_lst *lst)
 
 int		main()
 {
-	t_rooms	r;
-	t_lst	*lst;
 	char	*line;
-	lst = NULL;
+	t_data	*data;
+
+	if(!(data = ft_memalloc(sizeof(t_data))))
+		return(0);
+	line = NULL;
 	while (get_next_line(0, &line) > 0)
 	{
 		if (check_line(line) == 1)
 			ft_printf("[COMMENTAIRES]\n");
-		else if (!CHECK_BIT(r.status, ANTS) && ((r.i = get_ants(line)) > 0))
-			r.status |= ANTS;
-		else if (CHECK_BIT(r.status, ANTS) && (!CHECK_BIT(r.status, ROOMS)) && check_line(line) != 1)
+		else if (!CHECK_BIT(data.status, ANTS) && (data.nb_ant = get_ants(line)) > 0)
+			data.status |= ANTS;
+		else if (CHECK_BIT(data.status, ANTS) && (!CHECK_BIT(data.status, ROOMS)) && check_line(line) != 1)
+
 			check_startend(line, &r, lst);
-		else if (CHECK_BIT(r.status, ROOMS) && check_line(line) != 1)
+
+
+		
+
+
+
+		else if (CHECK_BIT(data.status, ROOMS) && check_line(line) != 1)
 			get_links(line, lst);
 		free(line);
-		ft_printf("\n[%d]\n", r.status);
+		ft_printf("\n[%d]\n", data.status);
 	}
 }

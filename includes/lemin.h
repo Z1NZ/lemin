@@ -22,17 +22,6 @@
 # define END	8
 # define LINKS	16
 
-typedef struct	s_rooms
-{
-	int		i;
-	int		y;
-	int		x;
-	int 	status;
-	char	*room;
-	char	*start;
-	char	*end;
-}			t_rooms;
-
 
 typedef struct	s_lst
 {
@@ -41,6 +30,15 @@ typedef struct	s_lst
 	char			*rooms;
 	struct s_lst	*next;
 }					t_lst;
+typedef struct	s_data
+{
+	t_lst		*lst;
+	int			status;
+	int			nb_ant;
+	char		*start; // wtf ????
+	char		*end;// wtf ??
+}				t_data;
+
 /*
 ** ft_splitnb.c
  */
