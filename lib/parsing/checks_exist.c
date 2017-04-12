@@ -6,8 +6,8 @@ int		check_exist(char *s, t_lst *lst)
 	while (lst)
 	{
 		if (ft_strcmp(lst->rooms, s) == 0)
-			return(0);
+			return(1);
 		lst = lst->next;
 	}
-	return(1);
+	return(0);
 }

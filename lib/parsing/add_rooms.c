@@ -1,7 +1,7 @@
 
 #include "lemin.h"
 
-t_lst	*add_rooms(t_lst *lst, char *str, int y, int x)
+t_lst	*add_rooms(t_lst *lst, data->lst)
 {
 	t_lst	*tmp;
 

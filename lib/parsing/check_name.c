@@ -1,6 +1,6 @@
 #include "lemin.h"
 
-char	*get_name(char *s)
+int		check_name(char *s)
 {
 	int i;
 
@@ -8,8 +8,12 @@ char	*get_name(char *s)
 	if (s[0] == '#' || s[0] == 'L')
 		return(0);
 	while(s[i] != ' ' && s[i] != '\0')
+	{
+		if (s[i] == '-')
+			return(0);
 		i++;
+	}
 	if (i == 0)
-		return(NULL);
-	return(s + i);
+		return(0);
+	return(1);
 }

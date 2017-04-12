@@ -35,12 +35,12 @@ int		main()
 	while (get_next_line(0, &line) > 0)
 	{
 		if (check_line(line) == 1)
-			ft_printf("[COMMENTAIRES]\n");
+			ft_putstr("[COMMENTAIRES]");
 		else if (!CHECK_BIT(data.status, ANTS) && (data.nb_ant = get_ants(line)) > 0)
 			data.status |= ANTS;
 		else if (CHECK_BIT(data.status, ANTS) && (!CHECK_BIT(data.status, ROOMS)) && check_line(line) != 1)
 
-			check_startend(line, &r, lst);
+			check_startend(line, data);
 
 
 		
