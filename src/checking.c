@@ -33,22 +33,27 @@ int		get_ants(char *line)
 		return(nb);
 }
 
-void	check_startend(char *line, t_rooms *r)
+void	check_startend(char *line, t_rooms *r, t_lst *lst)
 {
-	if (check_line(line) == 2)
+	if (check_line(line) == 2 && !CHECK_BIT(r->status, START))
+		r->status |= START;
+	else if (check_room(line) == 1 && CHECK_BIT(r->status, START))
 	{
-		get_next_line(0, &line);
-		if (check_room(line) == 1)
-			r->start = ft_strdup(line);
+		r->status ^= START;
+		r->start = ft_strdup(line);
 	}
-	else if (check_line(line) == 3)
+	else if (check_line(line) == 3 && !CHECK_BIT(r->status, END))
+		r->status |= END;
+	else if (check_line(line) == 3 && CHECK_BIT(r->status, END))
 	{
-		get_next_line(0, &line);
-		if (check_room(line) == 1)
-			r->end = ft_strdup(line);
+		r->end = ft_strdup(line);
+		r->status ^= END;
 	}
+	if (check_room(line) == 1)
+		get_rooms(line, r, lst);
+	else if (next_step(line, lst, r) == 1)
+		r->status |= ROOMS;
 }
-
 void	check_links(char *line, t_lst *lst)
 {
 	char **link;

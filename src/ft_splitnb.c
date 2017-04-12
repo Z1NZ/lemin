@@ -16,8 +16,7 @@ t_lst	*add_rooms(t_lst *lst, char *str, int y, int x)
 {
 	t_lst	*tmp;
 
-	tmp = malloc(sizeof(t_lst));
-	if (tmp)
+	if ((tmp = ft_memalloc(sizeof(t_lst))))
 	{
 		tmp->x = x;
 		tmp->y = y;
