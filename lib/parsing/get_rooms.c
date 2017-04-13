@@ -17,17 +17,22 @@ int		get_rooms(char *line, t_data *data)
 				tmp->y = ft_atoi(tab[1]);
 				tmp->x = ft_atoi(tab[2]);
 				if (tmp->name = ft_strdup(tab[0]))
+				{
+					free(tmp);
 					exit(-1); // free les structure
+				}
 			if (!check_exist(tab[0], data->lst))
-				add_rooms(lst, r->room,r->y,r->x);
+				add_rooms(data->lst, tmp);
 			else
-				// free la tmp;
+			{
+				free(tmp);
+				exit(-1);
+			}
 
 		}
 	}
 	ft_free_tab(tab);
-
-	if (data->lst)
+	if (data->lst) // debug
 		print_lst(data->lst);
 	return(1);
 }

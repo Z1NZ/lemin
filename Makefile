@@ -2,7 +2,8 @@
 NAME = lem-in
 
 #	GCC flags
-CFLAGS = -Wall -Wextra -Werror -g
+CFLAGS = -Wall -Wextra -Werror 
+#-Weverything -g
 
 #	Includes directories
 INC_TR = includes

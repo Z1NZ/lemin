@@ -2,5 +2,5 @@
 
 void	ft_putstr(char const *s)
 {
-	write(1, s, ((int)ft_strlen(s)));
+	write(1, s, ft_strlen(s));
 }

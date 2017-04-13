@@ -21,9 +21,6 @@ void	check_startend(char *line, t_data *data)
 	if (check_room(line) == 1)
 		get_rooms(line, data);
 
-
-
-	
 	else if (next_step(line, data) == 1)
 		data->status |= ROOMS;
 }

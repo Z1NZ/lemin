@@ -1,13 +1,13 @@
 
 # include "lemin.h"
 
-int		next_step(char *line, t_lst *lst, t_rooms r)
+int		next_step(char *line, t_data *data)
 {
 	if ((check_room(line) == 0) && ((check_line(line) != 2) && (check_line(line) != 3)))
 	{
-		if (!lst || r.start == NULL || r.end == NULL)
+		if (!data->lst || data->start == NULL || data->end == NULL)
 			exit (0);// free memo
-		if (get_links(line, lst) == 1)
+		if (get_links(line, data->lst) == 1)
 			return (1);
 		else
 			exit (0);// free memo
@@ -18,10 +18,8 @@ int		next_step(char *line, t_lst *lst, t_rooms r)
 int 	get_links(char *line, t_lst *lst)
 {
 	if (count_char(line, '-') == 1)
-		check_links(line, lst);
-	else
-		return (0);
-	return (1);
+		return (check_links(line, lst));
+	return (0);
 }
 
 int		main()
@@ -36,20 +34,17 @@ int		main()
 	{
 		if (check_line(line) == 1)
 			ft_putstr("[COMMENTAIRES]");
-		else if (!CHECK_BIT(data.status, ANTS) && (data.nb_ant = get_ants(line)) > 0)
-			data.status |= ANTS;
-		else if (CHECK_BIT(data.status, ANTS) && (!CHECK_BIT(data.status, ROOMS)) && check_line(line) != 1)
-
+		else if (!CHECK_BIT(data->status, ANTS) && (data->nb_ant = get_ants(line)) > 0)
+			data->status |= ANTS;
+		else if (CHECK_BIT(data->status, ANTS) && (!CHECK_BIT(data->status, ROOMS)) && check_line(line) != 1)
 			check_startend(line, data);
 
 
-		
-
-
-
-		else if (CHECK_BIT(data.status, ROOMS) && check_line(line) != 1)
-			get_links(line, lst);
+		else if (CHECK_BIT(data->status, ROOMS) && check_line(line) != 1)
+			get_links(line, data->lst);
 		free(line);
-		ft_printf("\n[%d]\n", data.status);
+		ft_putstr("\n");
+		ft_putnbr(data->status);
+		ft_putstr("\n");
 	}
 }

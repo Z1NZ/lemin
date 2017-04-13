@@ -1,19 +1,18 @@
 
 #include "lemin.h"
 
-t_lst	*add_rooms(t_lst *lst, data->lst)
+void	add_rooms(t_lst *src, t_lst *ptr)
 {
-	t_lst	*tmp;
+	t_lst *tmp;
 
-	if ((tmp = ft_memalloc(sizeof(t_lst))))
+	tmp = src;
+
+	if (tmp == NULL)
 	{
-		tmp->x = x;
-		tmp->y = y;
-		tmp->rooms = ft_strdup(str);
-		if (lst)
-			tmp->next = lst;
-		else
-			tmp->next = NULL;
+		src = ptr;
+		return ;
 	}
-	return (tmp);
+	while(tmp->next != NULL)
+		tmp = tmp->next;
+	tmp->next = ptr;
 }

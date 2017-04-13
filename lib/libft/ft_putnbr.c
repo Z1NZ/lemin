@@ -1,20 +1,18 @@
-void	ft_putnbr(long int n)
+
+# include "lemin.h"
+#include <unistd.h>
+
+void	ft_putnbr(int n)
 {
-	if (n == -2147483648)
-	{
-		ft_putstr("-2147483648");
-		return ;
-	}
+	long int	u_nbr;
+
+	u_nbr = n;
 	if (n < 0)
 	{
-		write(1, "-", 1);
-		n = -n;
+		ft_putchar('-');
+		u_nbr = -n;
 	}
-	if (n >= 10)
-	{
-		ft_putnbr(n / 10);
-		ft_putnbr(n % 10);
-	}
-	else
-		write(1, 0 + n, 1);
+	if (u_nbr / 10)
+		ft_putnbr((int)(u_nbr / 10));
+	ft_putchar(u_nbr % 10 + '0');
 }

@@ -13,6 +13,7 @@
 # ifndef LEMIN_H
 # define LEMIN_H
 # include <stdlib.h>
+# include <unistd.h>
 
 # define CHECK_BIT(var, pos)	(var & pos)
 # define ANTS	1
@@ -57,30 +58,25 @@ typedef struct	s_data
 /*
 ** ft_splitnb.c
  */
-t_lst	*add_rooms(t_lst *lst, char *str, int y, int x);
+void    add_rooms(t_lst *src, t_lst *ptr);
 int		get_nb(char *s);
-int		ft_splitnb(char *s, t_rooms *r);
 /*
 ** checking.c
  */
 int		check_line(char *line);
-void	check_startend(char *line, t_rooms *r, t_lst *lst);
-void	check_links(char *line, t_lst *lst);
+void	check_startend(char *line, t_data *data);
+int		check_links(char *line, t_lst *lst);
 int		get_ants(char *line);
 int		check_exist(char *s, t_lst *lst);
-
-void	init_all(char **line, t_rooms *r, t_lst *lst);
-
 int		get_links(char *line, t_lst *lst);
-int		next_step(char *line, t_lst *lst, t_rooms *r);
-int		check_hash(char *line, t_rooms *r, t_lst *lst);
+int		next_step(char *line, t_data *data);
 int		check_room(char *s);
 int		check_name(char *s);
 int		count_space(char *s);
 int		check_nb(char *s);
 int		count_char(char *s, char c);
 int		ft_error(int i);
-int		get_rooms(char *line, t_rooms *r, t_lst *lst);
+int		get_rooms(char *line, t_data *data);
 void	print_lst(t_lst *lst);
 /*
 ** libft
@@ -88,6 +84,17 @@ void	print_lst(t_lst *lst);
 int				get_next_line(int const fd, char **line);
 size_t			ft_strlen(const char *s);
 void			ft_putstr(char const *s);
+void			*ft_memalloc(size_t size);
+void			ft_putnbr(int n);
+void			*ft_memset(void *b, int c, size_t len);
+void			ft_bzero(void *s, size_t n);
+void			ft_putchar(char c);
+char			*ft_strchr(char *s, int c);
+int				ft_strcmp(const char *s1, const char *s2);
+char			**ft_strsplit(char *s, char c);
+int				ft_isdigit(int c);
+
+
 
 
 
