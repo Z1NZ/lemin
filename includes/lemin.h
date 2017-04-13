@@ -1,19 +1,8 @@
-	/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   lemin.h                                            :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: aboudjem <aboudjem@student.42.fr>          +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/04/04 05:59:47 by aboudjem          #+#    #+#             */
-/*   Updated: 2017/04/04 06:35:12 by aboudjem         ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
-
 # ifndef LEMIN_H
 # define LEMIN_H
 # include <stdlib.h>
 # include <unistd.h>
+# include <stdio.h>
 
 # define CHECK_BIT(var, pos)	(var & pos)
 # define ANTS	1
@@ -35,7 +24,7 @@ typedef struct			s_struct
 
 typedef struct			s_links
 {
-	char				*name;
+	struct s_lst		*lst;
 	struct s_links		*next;
 }						t_links;
 
@@ -43,32 +32,32 @@ typedef struct			s_lst
 {
 	int					x;
 	int					y;
+	int					value;
 	char				*name;
 	t_links				*links;
 	struct s_lst		*next;
 }						t_lst;
-typedef struct	s_data
+typedef struct			s_data
 {
-	t_lst		*lst;
-	int			status;
-	int			nb_ant;
-	char		*start; // wtf ????
-	char		*end;// wtf ??
-}				t_data;
+	t_lst				*lst;
+	int					status;
+	int					nb_ant;
+	char				*start;//wtf ????
+	char				*end;// wtf ??
+}						t_data;
 
 /*
-** ft_splitnb.c
- */
+** parsing
+*/
+
 void	add_rooms(t_data *data, t_lst *ptr);
 int		get_nb(char *s);
-/*
-** checking.c
- */
+int		add_links(t_lst *ptr1, t_lst *ptr2);
 int		check_line(char *line);
 void	check_startend(char *line, t_data *data);
 int		check_links(char *line, t_lst *lst);
 int		get_ants(char *line);
-int		check_exist(char *s, t_lst *lst);
+t_lst	*check_exist(char *s, t_lst *lst);
 int		get_links(char *line, t_lst *lst);
 int		next_step(char *line, t_data *data);
 int		check_room(char *s);
@@ -78,6 +67,11 @@ int		check_nb(char *s);
 int		count_char(char *s, char c);
 int		ft_error(int i);
 int		get_rooms(char *line, t_data *data);
+
+/*
+**	printer
+*/
+
 void	print_lst(t_lst *lst);
 /*
 ** libft
