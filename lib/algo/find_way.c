@@ -20,8 +20,15 @@ void	init_tree(t_links *links, t_lst *end, int i)
 	i++;
 	while(links)
 	{
+
+
+		ft_putstr("test");
+		ft_putstr(links->lst->name);
+		ft_putstr("\n");
+
 		if (links->lst->value == 0)
 		{
+			ft_putstr("rrrrrrr");
 			if (tmp == NULL)
 			{
 				if(!(tmp = (t_links *)ft_memalloc(sizeof(t_links))))
@@ -40,6 +47,9 @@ void	init_tree(t_links *links, t_lst *end, int i)
 			tmp->next = NULL;
 			tmp->lst->value = i;
 		}
+
+
+
 		links = links->next;
 	}
 	i++;
@@ -59,6 +69,7 @@ int		find_way(t_data *data)
 	end = check_exist(data->end, data->lst);
 	if (!start || !end)
 		return (0);
+	printf("[%p]  ---  [%p] %s\n", end, start, data->end);
 	start->value = 1;
 	init_tree(start->links, end, 1);
 	if (end->value != 0)

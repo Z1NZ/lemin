@@ -47,6 +47,11 @@ typedef struct			s_data
 }						t_data;
 
 /*
+** algo
+*/
+
+int		find_way(t_data *data);
+/*
 ** parsing
 */
 
@@ -58,7 +63,7 @@ void	check_startend(char *line, t_data *data);
 int		check_links(char *line, t_lst *lst);
 int		get_ants(char *line);
 t_lst	*check_exist(char *s, t_lst *lst);
-int		get_links(char *line, t_lst *lst);
+int		get_links(char *line, t_data *data);
 int		next_step(char *line, t_data *data);
 int		check_room(char *s);
 int		check_name(char *s);
