@@ -28,10 +28,14 @@ int 	check_end(t_lst *lst)
 int 	get_links(char *line, t_data *data)
 {
 	if (count_char(line, '-') == 1)
-		return (check_links(line, data->lst));
+	{
+return (check_links(line, data->lst));
+	}	
+
 	else if (check_end(data->lst))
 	{
-		ft_putstr("ON RENTRE");
+		// print_lst_links(data->lst);
+		// ft_putstr("-=========-\n");
 		find_way(data);
 	}
 	else
@@ -58,8 +62,8 @@ int		main()
 		else if (CHECK_BIT(data->status, ROOMS) && check_line(line) != 1)
 			get_links(line, data);
 		free(line);
-		ft_putstr("\n->");
-		ft_putnbr(data->status);
-		ft_putstr("<-\n");
+		// ft_putstr("\n->");
+		// ft_putnbr(data->status);
+		// ft_putstr("<-\n");
 	}
 }

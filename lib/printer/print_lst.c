@@ -10,6 +10,8 @@ void	print_lst(t_lst *lst)
 	{
 		ft_putstr("\n[");
 		ft_putstr(tmp->name);
+		ft_putstr("] value = ");
+		ft_putnbr(tmp->value);
 		ft_putstr("]\n");
 		tmp = tmp->next;
 	}

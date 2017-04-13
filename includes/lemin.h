@@ -78,6 +78,7 @@ int		get_rooms(char *line, t_data *data);
 */
 
 void	print_lst(t_lst *lst);
+void	print_lst_links(t_lst *lst);
 /*
 ** libft
 */

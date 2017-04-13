@@ -37,7 +37,7 @@ int		get_rooms(char *line, t_data *data)
 		}
 	}
 	ft_free_tab(tab);
-	if (data->lst) // debug
-		print_lst(data->lst);
+	// if (data->lst) // debug
+		// print_lst(data->lst);
 	return(1);
 }

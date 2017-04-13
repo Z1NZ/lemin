@@ -20,39 +20,25 @@ void	init_tree(t_links *links, t_lst *end, int i)
 	i++;
 	while(links)
 	{
-
-
-		ft_putstr("test");
-		ft_putstr(links->lst->name);
-		ft_putstr("\n");
-
 		if (links->lst->value == 0)
 		{
-			ft_putstr("rrrrrrr");
 			if (tmp == NULL)
 			{
 				if(!(tmp = (t_links *)ft_memalloc(sizeof(t_links))))
-				{
-					//free les structure
-					exit(-1);
-				}
+				exit(-1);//free les structure
 			}
 			else
 			{
 				while(tmp)
 					tmp = tmp->next;
-				tmp = (t_links *)ft_memalloc(sizeof(t_links));
+				tmp = (t_links *)ft_memalloc(sizeof(t_links));/// check if null
 			}
 			tmp->lst = links->lst;
-			tmp->next = NULL;
 			tmp->lst->value = i;
+			tmp->next = NULL;
 		}
-
-
-
 		links = links->next;
 	}
-	i++;
 	if (tmp && end->value == 0)
 		init_tree(tmp, end, i);
 	// free tmp
@@ -69,10 +55,11 @@ int		find_way(t_data *data)
 	end = check_exist(data->end, data->lst);
 	if (!start || !end)
 		return (0);
-	printf("[%p]  ---  [%p] %s\n", end, start, data->end);
+	// printf("[%p]->%s  ---  [%p]->%s\n", end, end->name, start, start->name);
 	start->value = 1;
 	init_tree(start->links, end, 1);
 	if (end->value != 0)
 		printf("on a trouver une solution en couche [%d]\n", end->value);
+	// print_lst(data->lst);
 	return (end->value);
 }
