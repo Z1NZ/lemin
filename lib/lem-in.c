@@ -43,8 +43,8 @@ int		main()
 		else if (CHECK_BIT(data->status, ROOMS) && check_line(line) != 1)
 			get_links(line, data->lst);
 		free(line);
-		ft_putstr("\n");
+		ft_putstr("\n->");
 		ft_putnbr(data->status);
-		ft_putstr("\n");
+		ft_putstr("<-\n");
 	}
 }

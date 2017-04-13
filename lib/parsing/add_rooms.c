@@ -1,15 +1,15 @@
 
 #include "lemin.h"
 
-void	add_rooms(t_lst *src, t_lst *ptr)
+void	add_rooms(t_data *data, t_lst *ptr)
 {
 	t_lst *tmp;
 
-	tmp = src;
+	tmp = data->lst;
 
 	if (tmp == NULL)
 	{
-		src = ptr;
+		data->lst = ptr;
 		return ;
 	}
 	while(tmp->next != NULL)

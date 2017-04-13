@@ -8,7 +8,9 @@ void	print_lst(t_lst *lst)
 	tmp = lst;
 	while(tmp)
 	{
-		ft_printf("--[%s]--[%d]--[%d]--\n", tmp->rooms, tmp->y, tmp->x);
+		ft_putstr("\n[");
+		ft_putstr(tmp->name);
+		ft_putstr("]\n");
 		tmp = tmp->next;
 	}
 }

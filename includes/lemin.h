@@ -44,6 +44,7 @@ typedef struct			s_lst
 	int					x;
 	int					y;
 	char				*name;
+	t_links				*links;
 	struct s_lst		*next;
 }						t_lst;
 typedef struct	s_data
@@ -58,7 +59,7 @@ typedef struct	s_data
 /*
 ** ft_splitnb.c
  */
-void    add_rooms(t_lst *src, t_lst *ptr);
+void	add_rooms(t_data *data, t_lst *ptr);
 int		get_nb(char *s);
 /*
 ** checking.c
@@ -81,6 +82,7 @@ void	print_lst(t_lst *lst);
 /*
 ** libft
 */
+
 int				get_next_line(int const fd, char **line);
 size_t			ft_strlen(const char *s);
 void			ft_putstr(char const *s);
@@ -93,6 +95,13 @@ char			*ft_strchr(char *s, int c);
 int				ft_strcmp(const char *s1, const char *s2);
 char			**ft_strsplit(char *s, char c);
 int				ft_isdigit(int c);
+char			*ft_strdup(const char *s1);
+int				ft_atoi(const char *str);
+int				ft_isdig_str(char *ptr);
+void			ft_free_tab(char **str);
+
+
+
 
 
 
