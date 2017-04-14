@@ -12,36 +12,69 @@
  //                                 f.enfiler(t);
  //                                 marquer(t);
 
+
+// typedef struct			s_links
+// {
+// 	struct s_lst		*lst;
+// 	struct s_links		*next;
+// }						t_links;
+
+void	clean_list(t_links *tmp)
+{
+	t_links *ptr;
+	while(tmp)
+	{
+		ptr = tmp;
+		tmp = tmp->next;
+		free(ptr);
+		ptr = NULL;
+	}
+}
+
+
 void	init_tree(t_links *links, t_lst *end, int i)
 {
 	t_links *tmp;
+	t_links *ptr;
 
-	tmp = NULL;
-	i++;
-	while(links)
+	ptr = NULL;
+
+
+	while(links && end->value == 0)
 	{
-		if (links->lst->value == 0)
+
+		tmp = NULL;
+		while(links)
 		{
-			if (tmp == NULL)
+			i++;
+			ft_putstr(links->lst->name);
+			ft_putstr("\n");
+			if (links->lst->value == 0)
 			{
-				if(!(tmp = (t_links *)ft_memalloc(sizeof(t_links))))
-				exit(-1);//free les structure
+				ptr = tmp;
+				if (tmp == NULL)
+				{
+					if(!(tmp = (t_links *)ft_memalloc(sizeof(t_links))))
+					exit(-1);//free les structure
+					tmp->lst = links->lst;
+					tmp->lst->value = i;
+					tmp->next = NULL;
+				}
+				else
+				{
+					while(ptr)
+						ptr = ptr->next;
+					ptr = (t_links *)ft_memalloc(sizeof(t_links));/// check if null
+					ptr->lst = links->lst;
+					ptr->lst->value = i;
+					ptr->next = NULL;
+				}
 			}
-			else
-			{
-				while(tmp)
-					tmp = tmp->next;
-				tmp = (t_links *)ft_memalloc(sizeof(t_links));/// check if null
-			}
-			tmp->lst = links->lst;
-			tmp->lst->value = i;
-			tmp->next = NULL;
+			links = links->next;
 		}
-		links = links->next;
+		// free links 
+		links = tmp;
 	}
-	if (tmp && end->value == 0)
-		init_tree(tmp, end, i);
-	// free tmp
 }
 
 
@@ -55,7 +88,6 @@ int		find_way(t_data *data)
 	end = check_exist(data->end, data->lst);
 	if (!start || !end)
 		return (0);
-	// printf("[%p]->%s  ---  [%p]->%s\n", end, end->name, start, start->name);
 	start->value = 1;
 	init_tree(start->links, end, 1);
 	if (end->value != 0)
