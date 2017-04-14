@@ -59,7 +59,7 @@ int		main()
 		else if (CHECK_BIT(data->status, ROOMS) && check_line(line) != 1)
 			get_links(line, data);
 		free(line);
-	ft_putstr("==============================ROOM avec les links===============================\n");
-	print_lst_links(data->lst);
+	// ft_putstr("==============================ROOM avec les links===============================\n");
+	// print_lst_links(data->lst);
 	}
 }
