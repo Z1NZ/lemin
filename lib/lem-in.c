@@ -7,18 +7,36 @@ int		next_step(char *line, t_data *data)
 	{
 		if (!data->lst || data->start == NULL || data->end == NULL)
 			exit (0);// free memo
-		if (get_links(line, data->lst) == 1)
+		if (get_links(line, data))
 			return (1);
 		else
 			exit (0);// free memo
 	}
 	return (0);
 }
+int 	check_end(t_lst *lst)
+{
+	while(lst)
+	{
+		if (lst->links)
+			return (1);
+		lst = lst->next;
+	}
+	return (0);
+}
 
-int 	get_links(char *line, t_lst *lst)
+int 	get_links(char *line, t_data *data)
 {
 	if (count_char(line, '-') == 1)
-		return (check_links(line, lst));
+		return (check_links(line, data->lst));
+	else if (check_end(data->lst))
+	{
+		// print_lst_links(data->lst);
+		// ft_putstr("-=========-\n");
+		find_way(data);
+	}
+	else
+		exit(-1);// fonctione free
 	return (0);
 }
 
@@ -38,13 +56,10 @@ int		main()
 			data->status |= ANTS;
 		else if (CHECK_BIT(data->status, ANTS) && (!CHECK_BIT(data->status, ROOMS)) && check_line(line) != 1)
 			check_startend(line, data);
-
-
 		else if (CHECK_BIT(data->status, ROOMS) && check_line(line) != 1)
-			get_links(line, data->lst);
+			get_links(line, data);
 		free(line);
-		ft_putstr("\n->");
-		ft_putnbr(data->status);
-		ft_putstr("<-\n");
+	// ft_putstr("==============================ROOM avec les links===============================\n");
+	// print_lst_links(data->lst);
 	}
 }

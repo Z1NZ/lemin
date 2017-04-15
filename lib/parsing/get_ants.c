@@ -14,7 +14,6 @@ int		get_ants(char *line)
 		i++;
 	}
 	nb = ft_atoi(line);
-	ft_putnbr(nb);
 	if (nb < 1 || nb > INT_MAX)// verifier les int max 
 		exit(-1);////// free les structures
 	else
