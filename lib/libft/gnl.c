@@ -1,6 +1,6 @@
 # include "lemin.h"
 
-char			*fill_line(char *line, char *buf)
+static char			*fill_line(char *line, char *buf)
 {
 	char	*tmp;
 	int		j;
@@ -12,9 +12,9 @@ char			*fill_line(char *line, char *buf)
 	while (buf[i] && buf[i] != '\n')
 		i++;
 	if (!line)
-		line = ft_memalloc(i + 1);
+		line = ft_memalloc((unsigned int)i + 1);
 	else
-		line = ft_memalloc(i + ft_strlen(tmp) + 1);
+		line = ft_memalloc((unsigned int)i + ft_strlen(tmp) + 1);
 	i = -1;
 	while (tmp[++i])
 		line[i] = tmp[i];
@@ -28,7 +28,7 @@ char			*fill_line(char *line, char *buf)
 	return (line);
 }
 
-void			multi_fd(t_struct **gnl, int fd)
+static void			multi_fd(t_struct **gnl, int fd)
 {
 	t_struct	*tmp;
 
@@ -74,17 +74,18 @@ int				get_next_line(int const fd, char **line)
 	static t_struct		*gnl = NULL;
 	int					rd;
 
+	rd = 0;
 	if (fd < 0 || line == NULL)
 		return (-1);
 	go_malloc(&gnl, line, fd);
-	while (gnl->s2 || (rd = read(fd, gnl->s1, BUFF_SIZE)))
+	while (gnl->s2 || (rd = (int)read(fd, gnl->s1, BUFF_SIZE)))
 	{
 		if (gnl->s2)
 		{
 			*line = fill_line(*line, gnl->s2 + 1);
 			if ((gnl->s2 = ft_strchr(gnl->s2 + 1, '\n')) != NULL)
 				return (1);
-			if (!(rd = read(fd, gnl->s1, BUFF_SIZE)))
+			if (!(rd = (int)read(fd, gnl->s1, BUFF_SIZE)))
 				return (0);
 		}
 		if (rd < 0)

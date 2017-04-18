@@ -1,6 +1,15 @@
 # include "lemin.h"
 # include <limits.h>
 
+static void	stock_name(char *line, char **stock)
+{
+	char *tmp;
+	
+	tmp = ft_strchr(line, ' ');
+	*tmp = '\0';
+	*stock = ft_strdup(line);
+	*tmp = ' ';
+}
 
 void	check_startend(char *line, t_data *data)
 {
@@ -12,21 +21,14 @@ void	check_startend(char *line, t_data *data)
 	else if (check_room(line) == 1 && CHECK_BIT(data->status, START))
 	{
 		data->status ^= START;
-		tmp = ft_strchr(line, ' ');
-		*tmp = '\0'; 
-		data->start = ft_strdup(line);
-		*tmp = ' ';
+		stock_name(line, &data->start);
 	}
 	else if (check_line(line) == 3 && !CHECK_BIT(data->status, END))
 		data->status |= END;
 	else if (check_room(line) == 1 && CHECK_BIT(data->status, END))
 	{
 		data->status ^= END;
-		tmp = ft_strchr(line, ' ');
-		*tmp = '\0'; 
-		data->end = ft_strdup(line);
-		*tmp = ' ';
-		
+		stock_name(line, &data->end);
 	}
 	if (check_room(line) == 1)
 		get_rooms(line, data);

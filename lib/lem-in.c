@@ -14,7 +14,7 @@ int		next_step(char *line, t_data *data)
 	}
 	return (0);
 }
-int 	check_end(t_lst *lst)
+static int 	check_end(t_lst *lst)
 {
 	while(lst)
 	{

@@ -10,9 +10,7 @@ int		check_links(char *line, t_lst *lst)
 	if (!link[0] || !link[1])
 		exit(-1);
 	if (add_links(check_exist(link[0], lst), check_exist(link[1], lst)))
-	{
 		return(1);// free(link) a ne pas oublier
-	}
-	ft_putstr("ca a pa link");
+	ft_putstr("Error Links");
 	return (0);
 }

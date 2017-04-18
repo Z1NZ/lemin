@@ -6,7 +6,6 @@ static int	is_neg(int neg, int nbr)
 		return (-nbr);
 	else
 		return (nbr);
-	return (0);
 }
 
 int			ft_atoi(const char *str)

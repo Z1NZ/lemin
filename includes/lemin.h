@@ -13,18 +13,18 @@
 
 # define BUFF_SIZE 4
 
-# define STOP      "\033[0m"
+# define STOP      	"\033[0m"
 # define BOLD       "\033[1m"
 # define ITALIC     "\033[3m"
 # define UNDERLINE  "\033[4m"
-# define BLACK   "\033[30m"
-# define RED     "\033[31m"
-# define GREEN   "\033[32m"
-# define YELLOW  "\033[33m"
-# define BLUE    "\033[34m"
-# define MAGENTA "\033[35m"
-# define CYAN    "\033[36m"
-# define WHITE   "\033[37m"
+# define BLACK   	"\033[30m"
+# define RED     	"\033[31m"
+# define GREEN   	"\033[32m"
+# define YELLOW  	"\033[33m"
+# define BLUE   	"\033[34m"
+# define MAGENTA 	"\033[35m"
+# define CYAN    	"\033[36m"
+# define WHITE   	"\033[37m"
 
 
 typedef struct			s_struct
@@ -60,10 +60,13 @@ typedef struct			s_data
 	char				*end;// wtf ??
 }						t_data;
 
+void	init_frist_node(t_links *links, int i);
+void	init_tree(t_links *links, t_lst *end, int i);
 /*
 ** algo
 */
-
+void	clean_list(t_links *tmp);
+t_links 	*add_list(t_links *dest, t_links *src, int i);
 int		find_way(t_data *data);
 /*
 ** parsing

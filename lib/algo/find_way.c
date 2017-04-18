@@ -121,5 +121,5 @@ int		find_way(t_data *data)
 	// print_lst(data->lst);
 		// ft_putstr("\n==============================ROOM avec les links===============================\n");
 		// print_lst_links(data->lst);
-		return (end->value);
-	}
+	return (end->value);
+}

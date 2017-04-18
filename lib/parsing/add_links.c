@@ -27,7 +27,6 @@ int		add_links(t_lst *ptr1, t_lst *ptr2)
 {
 	if (!ptr1 || !ptr2)
 		return (0);
-
 	add(ptr2, ptr1);
 	add(ptr1, ptr2);
 	return (1);

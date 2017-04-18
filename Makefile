@@ -2,9 +2,8 @@
 NAME = lem-in
 
 #	GCC flags
-CFLAGS = -Wall -Wextra -Werror 
-#-Weverything -g
-
+CFLAGS =  -Weverything -g
+#-Wall -Wextra -Werror
 #	Includes directories
 INC_TR = includes
 INCLUDES += $(addprefix -iquote , $(INC_TR))
