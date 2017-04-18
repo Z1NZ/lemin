@@ -1,24 +1,5 @@
 # include "lemin.h"
 
- // ParcoursLargeur(Graphe G, Sommet s):
- //       f = CreerFile();
- //       f.enfiler(s);
- //       marquer(s);
- //       tant que la file est non vide
- //                s = f.defiler();
- //                afficher(s);
- //                pour tout voisin t de s dans G
- //                         si t non marqué
- //                                 f.enfiler(t);
- //                                 marquer(t);
-
-
-// typedef struct			s_links
-// {
-// 	struct s_lst		*lst;
-// 	struct s_links		*next;
-// }						t_links;
-
 void	clean_list(t_links *tmp)
 {
 	t_links *ptr;
@@ -30,7 +11,7 @@ void	clean_list(t_links *tmp)
 		ptr = NULL;
 	}
 }
-t_links 	*add_list(t_links *dest, t_links *src)
+t_links 	*add_list(t_links *dest, t_links *src, t_data *data)
 {
 	t_links *ptr;
 
@@ -46,24 +27,27 @@ t_links 	*add_list(t_links *dest, t_links *src)
 		{
 			if (ptr == NULL)
 			{
-				dest = ft_memalloc(sizeof(t_links));
+				if ((dest = ft_memalloc(sizeof(t_links))) == NULL)
+					ft_exit(data);
 				ptr = dest;
 			}
 			else
-				dest = ft_memalloc(sizeof(t_links));
+			{
+				if ((dest = ft_memalloc(sizeof(t_links))) == NULL)
+					ft_exit(data);
+			}
 			dest->lst = src->lst;
 			dest->next = NULL;
 			dest = dest->next;
 		}
 		src = src->next;
 	}
-	printf("%p\n", ptr);
 	return (ptr);
 }
 
 
 
-void	init_tree(t_lst *start, t_lst *end)
+void	init_tree(t_lst *start, t_lst *end, t_data *data)
 {
 	t_links *tmp_links;
 	t_links *links;
@@ -80,12 +64,12 @@ void	init_tree(t_lst *start, t_lst *end)
 
 			if (links->lst->value == 0)
 			{
-				printf(RED"[%s]==\n"STOP, links->lst->name);
 				links->lst->value = i;
-				tmp_links = add_list(tmp_links, links->lst->links);
+				tmp_links = add_list(tmp_links, links->lst->links, data);
 			}
 			links = links->next;
 		}
+		clean_list(links);
 		links = tmp_links;
 	}
 }
@@ -101,21 +85,13 @@ int		find_way(t_data *data)
 	end = check_exist(data->end, data->lst);
 	if (!start || !end)
 		return (0);
-	start->value = 1;
-	// printf("%s[%s]%s->",BOLD, start->name, STOP);
-	init_tree(start, end);
-	// printf("%s[%s]%s",BLUE, end->name, STOP);
-	printf("\n[%d]\n", end->value);
+	init_tree(start, end, data);
 	if (end->value != 0)
 		printf("\n[Solution couche -- > [%d] ]\n", end->value);
 	else
 	{
 		printf("\n[Aucune solution Possible]\n");
-		exit (1);//free
+		ft_exit (data);
 	}
-
-	// print_lst(data->lst);
-		// ft_putstr("\n==============================ROOM avec les links===============================\n");
-		// print_lst_links(data->lst);
 	return (end->value);
 }

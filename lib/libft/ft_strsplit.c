@@ -63,7 +63,7 @@ char			**ft_strsplit(char *s, char c)
 	if (s == NULL)
 		return (NULL);
 	nb_word = cpt_word(s, c);
-	tab = (char **)malloc(sizeof(char *) * (unsigned int)(nb_word + 1));
+	tab = (char **)ft_memalloc(sizeof(char *) * (unsigned int)(nb_word + 1));
 	if (tab == NULL)
 		return (NULL);
 	tab[nb_word] = NULL;
@@ -72,7 +72,7 @@ char			**ft_strsplit(char *s, char c)
 	while (++i < nb_word)
 	{
 		stock = count;
-		if ((tab[i] = (char *)malloc((unsigned long)(cpt_ltt(&count, c) + 1))) == NULL)
+		if ((tab[i] = (char *)ft_memalloc((unsigned long)(cpt_ltt(&count, c) + 1))) == NULL)
 			return (NULL);
 		filling(stock, tab[i], c);
 	}

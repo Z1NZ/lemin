@@ -1,7 +1,7 @@
 # include "lemin.h"
 # include <limits.h>
 
-int		get_ants(char *line)
+int		get_ants(char *line, t_data *data)
 {
 	int nb;
 	int i;
@@ -10,12 +10,12 @@ int		get_ants(char *line)
 	while (line[i] != '\0')
 	{
 		if ((ft_isdigit(line[i])) == 0 || i >= 10)
-			exit(-1);///// free les structures
+			ft_exit(data);
 		i++;
 	}
 	nb = ft_atoi(line);
-	if (nb < 1 || nb > INT_MAX)// verifier les int max 
-		exit(-1);////// free les structures
+	if (nb < 1 || nb > INT_MAX)
+		ft_exit(data);
 	else
 		return(nb);
 }

@@ -62,12 +62,12 @@ typedef struct			s_data
 	char				*end;// wtf ??
 }						t_data;
 
-void	init_tree(t_lst *start, t_lst *end);
+void	init_tree(t_lst *start, t_lst *end, t_data *data);
 /*
 ** algo
 */
 void	clean_list(t_links *tmp);
-t_links 	*add_list(t_links *dest, t_links *src);
+t_links 	*add_list(t_links *dest, t_links *src, t_data *data);
 int		find_way(t_data *data);
 /*
 ** parsing
@@ -75,11 +75,11 @@ int		find_way(t_data *data);
 
 void	add_rooms(t_data *data, t_lst *ptr);
 int		get_nb(char *s);
-int		add_links(t_lst *ptr1, t_lst *ptr2);
+int		add_links(t_lst *ptr1, t_lst *ptr2, t_data *data);
 int		check_line(char *line);
 void	check_startend(char *line, t_data *data);
-int		check_links(char *line, t_lst *lst);
-int		get_ants(char *line);
+int		check_links(char *line, t_lst *lst, t_data *data);
+int		get_ants(char *line, t_data *data);
 t_lst	*check_exist(char *s, t_lst *lst);
 int		get_links(char *line, t_data *data);
 int		next_step(char *line, t_data *data);
@@ -117,9 +117,13 @@ char			*ft_strdup(const char *s1);
 int				ft_atoi(const char *str);
 int				ft_isdig_str(char *ptr);
 void			ft_free_tab(char **str);
-
-
-
+int				tab_len(char **tab);
+/*
+** tools
+*/
+void			ft_free(t_data *data);
+void			ft_free_lst(t_lst *lst);
+void			ft_exit(t_data *data);
 
 
 

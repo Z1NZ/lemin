@@ -6,11 +6,11 @@ int		next_step(char *line, t_data *data)
 	if ((check_room(line) == 0) && ((check_line(line) != 2) && (check_line(line) != 3)))
 	{
 		if (!data->lst || data->start == NULL || data->end == NULL)
-			exit (0);// free memo
+			ft_exit(data);
 		if (get_links(line, data))
 			return (1);
 		else
-			exit (0);// free memo
+			ft_exit(data);
 	}
 	return (0);
 }
@@ -28,15 +28,11 @@ static int 	check_end(t_lst *lst)
 int 	get_links(char *line, t_data *data)
 {
 	if (count_char(line, '-') == 1)
-		return (check_links(line, data->lst));
+		return (check_links(line, data->lst, data));
 	else if (check_end(data->lst))
-	{
-		// print_lst_links(data->lst);
-		// ft_putstr("-=========-\n");
 		find_way(data);
-	}
 	else
-		exit(-1);// fonctione free
+		ft_exit(data);
 	return (0);
 }
 
@@ -52,14 +48,12 @@ int		main()
 	{
 		if (check_line(line) == 1)
 			ft_putstr("[COMMENTAIRES]");
-		else if (!CHECK_BIT(data->status, ANTS) && (data->nb_ant = get_ants(line)) > 0)
+		else if (!CHECK_BIT(data->status, ANTS) && (data->nb_ant = get_ants(line, data)) > 0)
 			data->status |= ANTS;
 		else if (CHECK_BIT(data->status, ANTS) && (!CHECK_BIT(data->status, ROOMS)) && check_line(line) != 1)
 			check_startend(line, data);
 		else if (CHECK_BIT(data->status, ROOMS) && check_line(line) != 1)
 			get_links(line, data);
 		free(line);
-	// ft_putstr("==============================ROOM avec les links===============================\n");
-	// print_lst_links(data->lst);
 	}
 }
