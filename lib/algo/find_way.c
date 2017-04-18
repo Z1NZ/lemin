@@ -47,7 +47,13 @@ t_links 	*add_list(t_links *dest, t_links *src, int i)
 		{
 		// printf("[[%s]]\n"
 			src->lst->value = i;
-			dest = ft_memalloc(sizeof(t_links));
+			if (ptr == NULL)
+			{
+				dest = ft_memalloc(sizeof(t_links));
+				ptr = dest;
+			}
+			else
+				dest = ft_memalloc(sizeof(t_links));
 			dest->lst = src->lst;
 			dest->next = NULL;
 			dest = dest->next;
@@ -78,11 +84,12 @@ void	init_tree(t_links *links, t_lst *end, int i)
 	{
 		tmp = NULL;
 		i++;
+		printf("%p -- %p\n", links, tmp);
 		while(links)
 		{
-			// ft_putstr("\n");
-			printf("%s[%s]%s->",RED,(links->lst->name),STOP);
-			if (links->lst->value == 0 || links->lst->value == i - 1)
+
+			printf(RED"[%s][%d] "STOP"->", links->lst->name, links->lst->value);
+			if (links->lst->value == 0)
 			{
 				tmp = add_list(tmp, links->lst->links, i);
 			}
@@ -105,10 +112,9 @@ int		find_way(t_data *data)
 	if (!start || !end)
 		return (0);
 	start->value = 1;
-	init_frist_node(start->links, 2);
-	printf("%s[%s]%s->",BOLD, start->name, STOP);
-	init_tree(start->links, end, 2);
-	printf("%s[%s]%s",BLUE, end->name, STOP);
+	// printf("%s[%s]%s->",BOLD, start->name, STOP);
+	init_tree(start->links, end, 0);
+	// printf("%s[%s]%s",BLUE, end->name, STOP);
 	printf("\n[%d]\n", end->value);
 	if (end->value != 0)
 		printf("\n[Solution couche -- > [%d] ]\n", end->value);

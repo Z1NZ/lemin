@@ -1,10 +1,9 @@
 # include "lemin.h"
-# include <limits.h>
 
 static void	stock_name(char *line, char **stock)
 {
 	char *tmp;
-	
+
 	tmp = ft_strchr(line, ' ');
 	*tmp = '\0';
 	*stock = ft_strdup(line);

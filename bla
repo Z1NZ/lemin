@@ -1,0 +1,14 @@
+33
+##start
+abc 0 0
+def 0 0
+ghi 0 0
+jkl 0 0
+##end
+mno 0 0
+abc-def
+def-ghi
+ghi-jkl
+jkl-mno
+
+

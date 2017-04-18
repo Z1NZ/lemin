@@ -32,6 +32,7 @@ typedef struct			s_struct
 	char				*s1;
 	char				*s2;
 	int					fd;
+	int					pad;
 	struct s_struct		*next;
 	struct s_struct		*prev;
 }						t_struct;
@@ -47,6 +48,7 @@ typedef struct			s_lst
 	int					x;
 	int					y;
 	int					value;
+	int					pad;
 	char				*name;
 	t_links				*links;
 	struct s_lst		*next;
