@@ -30,7 +30,7 @@ void	clean_list(t_links *tmp)
 		ptr = NULL;
 	}
 }
-t_links 	*add_list(t_links *dest, t_links *src, int i)
+t_links 	*add_list(t_links *dest, t_links *src)
 {
 	t_links *ptr;
 
@@ -42,11 +42,8 @@ t_links 	*add_list(t_links *dest, t_links *src, int i)
 	}
 	while(src)
 	{
-			// printf("[%s][%d]\n", dest->lst->name, i);
 		if (src->lst->value == 0)
 		{
-		// printf("[[%s]]\n"
-			src->lst->value = i;
 			if (ptr == NULL)
 			{
 				dest = ft_memalloc(sizeof(t_links));
@@ -60,43 +57,36 @@ t_links 	*add_list(t_links *dest, t_links *src, int i)
 		}
 		src = src->next;
 	}
+	printf("%p\n", ptr);
 	return (ptr);
 }
 
 
 
-void	init_frist_node(t_links *links, int i)
+void	init_tree(t_lst *start, t_lst *end)
 {
-	t_links *ptr;
+	t_links *tmp_links;
+	t_links *links;
+	int i;
 
-	ptr = links;
-	while(ptr)
-	{
-		ptr->lst->value = i;
-		ptr = ptr->next;
-	}
-}
-
-void	init_tree(t_links *links, t_lst *end, int i)
-{
-	t_links *tmp;
+	i = 0;
+	links = start->links;
 	while(links && end->value == 0)
 	{
-		tmp = NULL;
+		tmp_links = NULL;
 		i++;
-		printf("%p -- %p\n", links, tmp);
 		while(links)
 		{
 
-			printf(RED"[%s][%d] "STOP"->", links->lst->name, links->lst->value);
 			if (links->lst->value == 0)
 			{
-				tmp = add_list(tmp, links->lst->links, i);
+				printf(RED"[%s]==\n"STOP, links->lst->name);
+				links->lst->value = i;
+				tmp_links = add_list(tmp_links, links->lst->links);
 			}
 			links = links->next;
 		}
-		links = tmp;
-		// free links 
+		links = tmp_links;
 	}
 }
 
@@ -113,7 +103,7 @@ int		find_way(t_data *data)
 		return (0);
 	start->value = 1;
 	// printf("%s[%s]%s->",BOLD, start->name, STOP);
-	init_tree(start->links, end, 0);
+	init_tree(start, end);
 	// printf("%s[%s]%s",BLUE, end->name, STOP);
 	printf("\n[%d]\n", end->value);
 	if (end->value != 0)

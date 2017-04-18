@@ -62,13 +62,12 @@ typedef struct			s_data
 	char				*end;// wtf ??
 }						t_data;
 
-void	init_frist_node(t_links *links, int i);
-void	init_tree(t_links *links, t_lst *end, int i);
+void	init_tree(t_lst *start, t_lst *end);
 /*
 ** algo
 */
 void	clean_list(t_links *tmp);
-t_links 	*add_list(t_links *dest, t_links *src, int i);
+t_links 	*add_list(t_links *dest, t_links *src);
 int		find_way(t_data *data);
 /*
 ** parsing
