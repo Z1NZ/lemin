@@ -69,6 +69,8 @@ void	init_tree(t_lst *start, t_lst *end, t_data *data);
 void	clean_list(t_links *tmp);
 t_links 	*add_list(t_links *dest, t_links *src, t_data *data);
 int		find_way(t_data *data);
+t_links *discover_tree(t_lst *end, t_data *data);
+t_links *add_top_link(t_links *links, t_links *src, t_data *data);
 /*
 ** parsing
 */
