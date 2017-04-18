@@ -1,6 +1,6 @@
 # include "lemin.h"
 
-static int	neg_handling(int neg, int nbr)
+static int	is_neg(int neg, int nbr)
 {
 	if (neg == 1)
 		return (-nbr);
@@ -12,7 +12,7 @@ static int	neg_handling(int neg, int nbr)
 int			ft_atoi(const char *str)
 {
 	int i;
-	int nbr;
+	long int nbr;
 	int neg;
 
 	nbr = 0;
@@ -31,5 +31,7 @@ int			ft_atoi(const char *str)
 		nbr += (int)(str[i] - '0');
 		i++;
 	}
-	return (neg_handling(neg, nbr));
+	if (nbr > 2147483647 || nbr < -2147483648)
+		return (0);
+	return (is_neg(neg, (int)nbr));
 }
