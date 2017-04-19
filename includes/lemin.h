@@ -48,7 +48,7 @@ typedef struct			s_lst
 	int					x;
 	int					y;
 	int					value;
-	int					pad;
+	int					ant;
 	char				*name;
 	t_links				*links;
 	struct s_lst		*next;
@@ -99,6 +99,7 @@ int		get_rooms(char *line, t_data *data);
 
 void	print_lst(t_lst *lst);
 void	print_lst_links(t_lst *lst);
+void 	ft_print_way(t_data *data, t_links *tmp);
 /*
 ** libft
 */

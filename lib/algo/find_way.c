@@ -11,6 +11,7 @@ void	clean_list(t_links *tmp)
 		ptr = NULL;
 	}
 }
+
 t_links 	*add_list(t_links *dest, t_links *src, t_data *data)
 {
 	t_links *ptr;
@@ -44,8 +45,6 @@ t_links 	*add_list(t_links *dest, t_links *src, t_data *data)
 	}
 	return (ptr);
 }
-
-
 
 void	init_tree(t_lst *start, t_lst *end, t_data *data)
 {
@@ -128,11 +127,13 @@ int		find_way(t_data *data)
 	{
 		printf("\n[Solution couche -- > [%d] ]\n", end->value);
 		tmp = discover_tree(end, data);
-		while(tmp)
-		{
-			printf("[%s]->", tmp->lst->name);
-			tmp = tmp->next;
-		}
+		ft_print_way(data, tmp);
+		clean_list(tmp);
+		// while(tmp)
+		// {
+		// 	printf("[%s]->", tmp->lst->name);
+		// 	tmp = tmp->next;
+		// }
 		printf("\n");
 	}
 	else
@@ -140,5 +141,6 @@ int		find_way(t_data *data)
 		printf("\n[Aucune solution Possible]\n");
 		ft_exit (data);
 	}
+	data->status = 0;
 	return (end->value);
 }
