@@ -62,10 +62,10 @@ typedef struct			s_data
 	char				*end;// wtf ??
 }						t_data;
 
-void	init_tree(t_lst *start, t_lst *end, t_data *data);
 /*
 ** algo
 */
+void	init_tree(t_lst *start, t_lst *end, t_data *data);
 void	clean_list(t_links *tmp);
 t_links 	*add_list(t_links *dest, t_links *src, t_data *data);
 int		find_way(t_data *data);

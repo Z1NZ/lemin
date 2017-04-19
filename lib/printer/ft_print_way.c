@@ -42,7 +42,6 @@ void finish(t_data *data, t_links *tmp)
 				ft_putnbr(ptr->lst->ant);
 				ft_putstr("-");
 				ft_putstr(ptr->lst->name);
-
 				ft_putstr(STOP);
 			}
 			ptr = ptr->next;

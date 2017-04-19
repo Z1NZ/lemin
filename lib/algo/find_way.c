@@ -12,39 +12,63 @@ void	clean_list(t_links *tmp)
 	}
 }
 
-t_links 	*add_list(t_links *dest, t_links *src, t_data *data)
+void	print_list(t_links *tmp)
 {
 	t_links *ptr;
+	while(tmp)
+	{
+		printf(BLUE"%s\n"STOP, tmp->lst->name);
+		tmp = tmp->next;
+	}
+}
 
-	ptr = dest;
+
+
+void	push_back(t_links *dest, t_links *src, t_data *data)
+{
+
 	if (dest)
 	{
-		while(dest)
+		while(dest->next)
 			dest = dest->next;
+		if ((dest->next = ft_memalloc(sizeof(t_links))) == NULL)
+			ft_exit(data);
+		dest->next->lst = src->lst;
+		dest->next->next = NULL;
 	}
+
+}
+
+t_links 	*add_list(t_links *dest, t_links *src, t_data *data)
+{
 	while(src)
 	{
 		if (src->lst->value == 0)
 		{
-			if (ptr == NULL)
+			if (!dest)
 			{
+
 				if ((dest = ft_memalloc(sizeof(t_links))) == NULL)
 					ft_exit(data);
-				ptr = dest;
+				dest->lst = src->lst;
+				dest->next = NULL;
 			}
 			else
-			{
-				if ((dest = ft_memalloc(sizeof(t_links))) == NULL)
-					ft_exit(data);
-			}
-			dest->lst = src->lst;
-			dest->next = NULL;
-			dest = dest->next;
+				push_back(dest, src, data);
 		}
 		src = src->next;
 	}
-	return (ptr);
+	return(dest);
 }
+
+
+
+
+
+
+
+
+
 
 void	init_tree(t_lst *start, t_lst *end, t_data *data)
 {
@@ -63,56 +87,15 @@ void	init_tree(t_lst *start, t_lst *end, t_data *data)
 		{
 			if (links->lst->value == 0)
 			{
-				// printf("%s\n", links->lst->name);
 				links->lst->value = i;
-				// printf("-->[%d]\n", i);
 				tmp_links = add_list(tmp_links, links->lst->links, data);
-
+				
 			}
 			links = links->next;
 		}
-		printf("\n");
 		clean_list(links);
 		links = tmp_links;
 	}
-}
-
-t_links	*add_top_link(t_links *links, t_links *src, t_data *data)
-{
-	t_links *tmp;
-
-	if ((tmp = ft_memalloc(sizeof(t_links))) == NULL)
-		ft_exit(data);
-	tmp->lst = src->lst;
-	tmp->next = links;
-	return(tmp);
-}
-
-
-t_links	*discover_tree(t_lst *end, t_data *data)
-{
-	int i;
-	t_links *links;
-	links = end->links;
-	i = end->value;
-	t_links *ptr;
-
-	if ((ptr = ft_memalloc(sizeof(t_links))) == NULL)
-		ft_exit(data);
-	ptr->lst = end;
-	ptr->next = NULL;
-	while (links && i > -1)
-	{
-		if (links->lst->value == i - 1)
-		{
-			ptr = add_top_link(ptr, links, data);
-			links = links->lst->links;
-			i--;
-		}
-		else
-			links = links->next;
-	}
-	return(ptr);
 }
 
 int		find_way(t_data *data)
@@ -123,10 +106,11 @@ int		find_way(t_data *data)
 
 	start = check_exist(data->start, data->lst);
 	end = check_exist(data->end, data->lst);
-	printf("[%s]\n", start->name);
-	printf("[%s]\n", end->name);
 	if (!start || !end)
 		return (0);
+
+	print_lst_links(data->lst);
+
 	init_tree(start, end, data);
 	if (end->value != 0)
 	{

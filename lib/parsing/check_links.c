@@ -13,7 +13,7 @@ int		check_links(char *line, t_lst *lst, t_data *data)
 	}
 	if (add_links(check_exist(link[0], lst), check_exist(link[1], lst), data))
 	{
-		printf("[%s][%s]----\n", link[0], link[1]);
+		// printf("[%s][%s]----\n", link[0], link[1]);
 		ft_free_tab(link);
 		return(1);// free(link) a ne pas oublier
 	}
