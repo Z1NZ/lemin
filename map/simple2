@@ -1,0 +1,16 @@
+4
+##start
+start 0 0
+##end
+end 1 1
+salle1 2 2
+dead1 3 3
+salle2 4 4
+room1 5 5
+room2 6 6
+start-salle1
+start-salle2
+salle2-salle1
+start-room1
+room1-room2
+room2-end

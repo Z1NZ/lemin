@@ -61,14 +61,17 @@ void	init_tree(t_lst *start, t_lst *end, t_data *data)
 		i++;
 		while(links)
 		{
-			printf("%s\n", links->lst->name);
 			if (links->lst->value == 0)
 			{
+				// printf("%s\n", links->lst->name);
 				links->lst->value = i;
+				// printf("-->[%d]\n", i);
 				tmp_links = add_list(tmp_links, links->lst->links, data);
+
 			}
 			links = links->next;
 		}
+		printf("\n");
 		clean_list(links);
 		links = tmp_links;
 	}
@@ -120,6 +123,8 @@ int		find_way(t_data *data)
 
 	start = check_exist(data->start, data->lst);
 	end = check_exist(data->end, data->lst);
+	printf("[%s]\n", start->name);
+	printf("[%s]\n", end->name);
 	if (!start || !end)
 		return (0);
 	init_tree(start, end, data);

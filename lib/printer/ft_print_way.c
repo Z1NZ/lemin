@@ -1,5 +1,5 @@
 # include "lemin.h"
-	
+
 void	ft_advance_ants(t_links *ptr)
 {
 	int i;
@@ -18,20 +18,9 @@ void	ft_advance_ants(t_links *ptr)
 
 void	ft_color(int i)
 {
-	if (i % 7 == 1)
-		ft_putstr(BOLD);
-	else if (i % 7 == 2)
-		ft_putstr(RED);
-	else if (i % 7 == 3)
-		ft_putstr(GREEN);
-	else if (i % 7 == 4)
-		ft_putstr(YELLOW);
-	else if (i % 7 == 5)
-		ft_putstr(BLUE);
-	else if (i % 7 == 6)
-		ft_putstr(MAGENTA );
-	else if (i % 7 == 7)
-		ft_putstr(CYAN);
+	ft_putstr("\e[38;5;");
+	ft_putnbr(120 + i + (i % 10));
+	ft_putstr("m");
 }
 void finish(t_data *data, t_links *tmp)
 {
@@ -53,6 +42,7 @@ void finish(t_data *data, t_links *tmp)
 				ft_putnbr(ptr->lst->ant);
 				ft_putstr("-");
 				ft_putstr(ptr->lst->name);
+
 				ft_putstr(STOP);
 			}
 			ptr = ptr->next;

@@ -32,7 +32,11 @@ int 	get_links(char *line, t_data *data)
 	else if (check_end(data->lst))
 		find_way(data);
 	else
+	{
+		ft_putstr(line);
+		ft_putstr("Error LINK");
 		ft_exit(data);
+	}
 	return (0);
 }
 
@@ -44,7 +48,7 @@ int		main()
 	if(!(data = ft_memalloc(sizeof(t_data))))
 		return(0);
 	line = NULL;
-	while (get_next_line(0, &line) > 0)
+	while (get_next_line(0, &line) >= 0)
 	{
 		if (check_line(line) == 1)
 			ft_putstr("[COMMENTAIRES]");
