@@ -13,5 +13,5 @@ int		count_char(char *s, char c)
 			count++;
 		i++;
 	}
-		return(count);
+	return (count);
 }

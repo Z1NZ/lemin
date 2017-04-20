@@ -1,6 +1,6 @@
-# include "lemin.h"
+#include "lemin.h"
 
-static char			*fill_line(char *line, char *buf)
+static char		*fill_line(char *line, char *buf)
 {
 	char	*tmp;
 	int		j;
@@ -28,7 +28,7 @@ static char			*fill_line(char *line, char *buf)
 	return (line);
 }
 
-static void			multi_fd(t_struct **gnl, int fd)
+static void		multi_fd(t_struct **gnl, int fd)
 {
 	t_struct	*tmp;
 

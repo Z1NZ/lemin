@@ -1,4 +1,4 @@
-# include "lemin.h"
+#include "lemin.h"
 
 void	ft_putstr(char const *s)
 {

@@ -1,16 +1,15 @@
-# include "lemin.h"
+#include "lemin.h"
 
-
-static inline void fr_tmp_data(t_lst *tmp, t_data *data)
+static inline void	fr_tmp_data(t_lst *tmp, t_data *data)
 {
 	free(tmp);
 	ft_exit(data);
 }
 
-int		get_rooms(char *line, t_data *data)
+int					get_rooms(char *line, t_data *data)
 {
-	char **tab;
-	t_lst *tmp;
+	char	**tab;
+	t_lst	*tmp;
 
 	tmp = NULL;
 	tab = ft_strsplit(line, ' ');
@@ -33,5 +32,5 @@ int		get_rooms(char *line, t_data *data)
 			ft_exit(data);
 	}
 	ft_free_tab(tab);
-	return(1);
+	return (1);
 }

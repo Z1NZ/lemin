@@ -1,5 +1,5 @@
 
-# include "lemin.h"
+#include "lemin.h"
 #include <unistd.h>
 
 void	ft_putnbr(int n)

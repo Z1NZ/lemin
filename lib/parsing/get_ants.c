@@ -1,5 +1,4 @@
-# include "lemin.h"
-# include <limits.h>
+#include "lemin.h"
 
 int		get_ants(char *line, t_data *data)
 {
@@ -14,8 +13,8 @@ int		get_ants(char *line, t_data *data)
 		i++;
 	}
 	nb = ft_atoi(line);
-	if (nb < 1 || nb > INT_MAX)
+	if (nb < 1 || nb > 2147483647)
 		ft_exit(data);
 	else
-		return(nb);
+		return (nb);
 }

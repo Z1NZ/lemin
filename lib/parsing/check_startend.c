@@ -1,6 +1,6 @@
-# include "lemin.h"
+#include "lemin.h"
 
-static void	stock_name(char *line, char **stock)
+static void		stock_name(char *line, char **stock)
 {
 	char *tmp;
 
@@ -10,7 +10,7 @@ static void	stock_name(char *line, char **stock)
 	*tmp = ' ';
 }
 
-void	check_startend(char *line, t_data *data)
+void			check_startend(char *line, t_data *data)
 {
 	char *tmp;
 

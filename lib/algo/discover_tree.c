@@ -1,13 +1,13 @@
-# include "lemin.h"
+#include "lemin.h"
 
 t_links	*discover_tree(t_lst *end, t_data *data)
 {
-	int i;
-	t_links *links;
+	int		i;
+	t_links	*links;
+	t_links	*ptr;
+
 	links = end->links;
 	i = end->value;
-	t_links *ptr;
-
 	if ((ptr = ft_memalloc(sizeof(t_links))) == NULL)
 		ft_exit(data);
 	ptr->lst = end;
@@ -23,5 +23,5 @@ t_links	*discover_tree(t_lst *end, t_data *data)
 		else
 			links = links->next;
 	}
-	return(ptr);
+	return (ptr);
 }

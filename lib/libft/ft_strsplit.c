@@ -1,4 +1,4 @@
-# include "lemin.h"
+#include "lemin.h"
 
 static int		cpt_word(char *s, char c)
 {
@@ -72,7 +72,8 @@ char			**ft_strsplit(char *s, char c)
 	while (++i < nb_word)
 	{
 		stock = count;
-		if ((tab[i] = (char *)ft_memalloc((unsigned long)(cpt_ltt(&count, c) + 1))) == NULL)
+		if ((tab[i] = (char *)ft_memalloc((unsigned long)
+						(cpt_ltt(&count, c) + 1))) == NULL)
 			return (NULL);
 		filling(stock, tab[i], c);
 	}

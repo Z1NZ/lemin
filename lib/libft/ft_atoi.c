@@ -1,4 +1,4 @@
-# include "lemin.h"
+#include "lemin.h"
 
 static int	is_neg(int neg, int nbr)
 {
@@ -10,9 +10,9 @@ static int	is_neg(int neg, int nbr)
 
 int			ft_atoi(const char *str)
 {
-	int i;
-	long int nbr;
-	int neg;
+	int			i;
+	long int	nbr;
+	int			neg;
 
 	nbr = 0;
 	i = 0;

@@ -1,9 +1,8 @@
-# include "lemin.h"
-# include <limits.h>
+#include "lemin.h"
 
 int		check_line(char *line)
 {
-	if ((line[0]) && line[0] == '#' && line[1] != '#') 
+	if ((line[0]) && line[0] == '#' && line[1] != '#')
 		return (1);
 	else if ((line[0] && line[1]) && line[0] == '#' && line[1] == '#')
 	{

@@ -1,4 +1,4 @@
-# include "lemin.h"
+#include "lemin.h"
 
 void	ft_free_tab(char **str)
 {

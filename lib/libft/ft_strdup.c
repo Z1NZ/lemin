@@ -1,4 +1,4 @@
-# include "lemin.h"
+#include "lemin.h"
 
 char	*ft_strdup(const char *s1)
 {

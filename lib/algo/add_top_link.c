@@ -1,4 +1,4 @@
-# include "lemin.h"
+#include "lemin.h"
 
 t_links	*add_top_link(t_links *links, t_links *src, t_data *data)
 {
@@ -8,5 +8,5 @@ t_links	*add_top_link(t_links *links, t_links *src, t_data *data)
 		ft_exit(data);
 	tmp->lst = src->lst;
 	tmp->next = links;
-	return(tmp);
+	return (tmp);
 }

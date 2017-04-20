@@ -1,4 +1,4 @@
-# include "lemin.h"
+#include "lemin.h"
 
 void	ft_free(t_data *data)
 {

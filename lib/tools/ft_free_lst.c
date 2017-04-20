@@ -1,14 +1,14 @@
-# include "lemin.h"
+#include "lemin.h"
 
 void	ft_free_lst(t_lst *lst)
 {
 	t_lst *tmp;
 
 	tmp = NULL;
-	while(lst)
+	while (lst)
 	{
 		tmp = lst->next;
-		while(lst->links)
+		while (lst->links)
 		{
 			free(lst->links);
 			lst->links = lst->links->next;
